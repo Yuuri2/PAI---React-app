@@ -22,6 +22,7 @@
     --mainbody : #412B6B;
     --topelements : #5C3E94;
     --additions : #F25912;
+    --font : white;
 }
 
 body[data-theme='light']{
@@ -29,6 +30,7 @@ body[data-theme='light']{
     --mainbody : #A0E9FF;
     --topelements : #CDF5FD;
     --additions : #00A9FF;
+    --font : black;
 }
 html, body {
     height: 100%;
@@ -82,13 +84,39 @@ main{
     background-color: var(--additions);
 }
 /* Button  */ 
+
+#themeSwitch{
+    float: right;
+    border-width: 1px;
+    width: 5%;
+    height: 100%;
+    background-color: var(--topelements);
+}
+
 .calc-button{
     background-color: var(--topelements);
     border-width: 0px;
+    width: 18%;
+    height: 22%;
+    margin: 5px;
+    font-size:x-large;
+    color: var(--font);
+}
+.calc-button {
+    transition: transform 0.1s ease, background-color 0.2s;
+    cursor: pointer;
+}
+
+.calc-button:hover {
+    filter: brightness(1.2);
+}
+
+.calc-button:active {
+    transform: scale(0.92);
+    filter: brightness(0.8);
 }
 
 #KeyPadSpace{
     width: 70%;
     height: 80%;
-    background-color: var(--topelements);
 }

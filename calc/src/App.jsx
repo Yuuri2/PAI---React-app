@@ -18,7 +18,7 @@ function App() {
   return(
     <main data-theme={theme}>
       <div id='header'>
-        <button onClick={toggleTheme}>Zmień motyw</button>
+        <button id='themeSwitch' onClick={toggleTheme}>{theme === 'light' ? '🌙' : '☀️'}</button>
       </div>
       <div id='DisplayContainer'>
         <Display/>

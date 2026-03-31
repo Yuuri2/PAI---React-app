@@ -1,23 +1,20 @@
 import Button from './Button';
 
+const layout = [
+    "C", "1", "2", "3", "+",
+    "^", "4", "5", "6", "-",
+    "Sqrt", "7", "8", "9", "*",
+    "Bin", "Hex", "0", "=", "/"
+]
+
 function KeyPad(){
     return(
         <div id='KeyPadSpace'>
-            <Button label="1"></Button>
-            <Button label="2"></Button>
-            <Button label="3"></Button>
-
+            {layout.map((label) => (
+                <Button key={label} label={label} />
+            ))}
         </div>
     );
-}
-
-function GenerateKeyPad(){
-    for(let row = 1; row <=3; row++){
-
-        for(let col=1;col <=3; col++){
-            
-        }
-    }
 }
 
 export default KeyPad;
