@@ -1,4 +1,4 @@
-#Programowanie Aplikacji Internetowych
+# Programowanie Aplikacji Internetowych
 
 ## Wymagania projektu:
 - [x] Aplikacja webowa w React

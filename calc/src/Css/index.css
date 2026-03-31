@@ -1,0 +1,94 @@
+/*
+    Palette:
+    orange       #F25912
+    light violet #5C3E94
+    dark violet  #412B6B
+    indigo       #211832
+
+    Light:
+    darkblue #00A9FF
+    seablue #89CFF3
+    skyblue #A0E9FF
+    water #CDF5FD
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --backdrop : #211832;
+    --mainbody : #412B6B;
+    --topelements : #5C3E94;
+    --additions : #F25912;
+}
+
+body[data-theme='light']{
+    --backdrop : #89CFF3;
+    --mainbody : #A0E9FF;
+    --topelements : #CDF5FD;
+    --additions : #00A9FF;
+}
+html, body {
+    height: 100%;
+    width: 100%;
+}
+body{
+    transition: background-color 0.3s ease;
+    background-color: var(--backdrop);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main{
+    height: 100vh;
+    width: 60%;
+    min-width: 1000px;
+    background-color: var(--mainbody);
+    color: var(--additions);
+    
+}
+#header{
+    height: 5%;
+    width: 100%;
+    background-color: var(--topelements);
+}
+
+#DisplayContainer{
+    height: 30%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#KeyPadContainer{
+    height: 60%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Display */ 
+#Display{
+    width: 70%;
+    height: 70%;
+    background-color: var(--additions);
+}
+/* Button  */ 
+.calc-button{
+    background-color: var(--topelements);
+    border-width: 0px;
+}
+
+#KeyPadSpace{
+    width: 70%;
+    height: 80%;
+    background-color: var(--topelements);
+}
