@@ -1,8 +1,10 @@
 import { useState } from 'react'
 
-function Display(){
+function Display({ value }){
     return(
-        <div id='Display'></div>
+        <div id='Display'>
+            {value || "0"}
+        </div>
     );
 }
 export default Display

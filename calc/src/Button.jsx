@@ -1,11 +1,7 @@
-import { useState } from 'react'
-
-function Button(props) {
-  const [count, setCount] = useState(0)
-  
+function Button({label, onClick}) {  
   return(
-    <button className="calc-button">
-        {props.label}
+    <button className="calc-button" onClick={onClick}>
+        {label}
     </button>
   );
 }

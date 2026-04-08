@@ -7,11 +7,15 @@ const layout = [
     "Bin", "Hex", "0", "=", "/"
 ]
 
-function KeyPad(){
+function KeyPad({ onBtnClick }){
     return(
         <div id='KeyPadSpace'>
             {layout.map((label) => (
-                <Button key={label} label={label} />
+                <Button 
+                key={label} 
+                label={label} 
+                onClick={() => onBtnClick(label)}
+                />
             ))}
         </div>
     );
