@@ -3,7 +3,7 @@
 ## Wymagania projektu:
 - [x] Aplikacja webowa w React
 - [ ] Liczby wprowadzane myszką na stronie jak i liczbami z klawiatury
-- [x ] Dostępne operacje: mnożenie, dzielenie, dodawanie, odejmowanie
+- [x] Dostępne operacje: mnożenie, dzielenie, dodawanie, odejmowanie
 - [x] Motyw Jasny i Ciemny
 - [x] Usuwanie liczb
 - [ ] Obsługa wartości zmiennoprzecinkowych
