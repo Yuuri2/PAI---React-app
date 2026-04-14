@@ -10,15 +10,23 @@ function App() {
   const [operand, setOperand] = useState("");
 
   const inputHandle = (value) => {
-    console.log("Kliknięto guzik: ", value);
     switch(value){
       case "=":
         evaluate();
         break;
-      case "C":
+      case "Clear":
+        setVal1("");
+        setOperand("");
+        setOnDisplay("");
+        break;
+      case "Del":
         setOnDisplay(prev => prev.toString().slice(0, -1));
         break;
       case "+": case "-": case "/": case "*": case "^": case "Sqrt":
+        if(value === "-" && onDisplay === ""){
+          setOnDisplay("-");
+          break;
+        }
         if(val1 === "") setVal1("0");
         setVal1(onDisplay);
         setOperand(value);
@@ -31,9 +39,17 @@ function App() {
       case "Hex":
         //TODO
         break;
+      case ".":
+        if(onDisplay === "") setOnDisplay("0.");
+        else setOnDisplay(prev => prev + value);
+        break;
+
       default:
         try{
-          setOnDisplay(prev => prev + value);
+          if(onDisplay === "0") {
+            setOnDisplay(value)
+          }
+          else setOnDisplay(prev => prev + value);
         }
         catch{
           return;
@@ -70,17 +86,53 @@ function App() {
         break;
       
       case "^":
-        //TODO
+        result = Math.pow(num1, num2);
         break;
       
       case "Sqrt":
-        //TODO
+        result = Math.sqrt(num1);
         break;
     }
+    result = Math.round(result * 100) / 100;
   setOnDisplay(result.toString());
   setOperand("");
   setVal1("");
 }
+  useEffect(() => {
+  const handleKeyDown = (event) => {
+    const { key } = event;
+
+    if (/^[0-9+\-*/.^]$/.test(key)) {
+      event.preventDefault();
+      inputHandle(key);
+    }
+
+    if (key === "Enter") {
+      event.preventDefault();
+      inputHandle("=");
+    }
+    else if (key === "Backspace") {
+      inputHandle("Del");
+    }
+    else if (key === "Escape") {
+      inputHandle("Clear");
+    }
+    else if (key === ",") {
+      inputHandle(".");
+    }
+    else if (key === "^") {
+      inputHandle("^");
+    }
+  };
+
+  // Dodajemy "nasłuchiwacz" do całego okna przeglądarki
+  window.addEventListener("keydown", handleKeyDown);
+
+  // Sprzątanie (Cleanup) - ważne, żeby nie mnożyć listenerów!
+  return () => {
+    window.removeEventListener("keydown", handleKeyDown);
+  };
+}, [onDisplay, val1, operand]);
 
   useEffect(() => {
     document.body.setAttribute('data-theme', theme);
