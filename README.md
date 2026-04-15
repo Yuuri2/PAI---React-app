@@ -1,4 +1,4 @@
-# Programowanie Aplikacji Internetowych
+# Programowanie Aplikacji Internetowych 2026 Semestr Letni
 
 ## Wymagania projektu:
 - [x] Aplikacja webowa w React
