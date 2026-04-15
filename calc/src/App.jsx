@@ -4,12 +4,22 @@ import Display from './Display'
 
 function App() {
   const [theme, setTheme] = useState('light');
-
+  const [actionLock, setActionLock] = useState(false);
   const [onDisplay, setOnDisplay] = useState("");
   const [val1, setVal1] = useState("");
   const [operand, setOperand] = useState("");
 
   const inputHandle = (value) => {
+    if(actionLock){
+      if(value === "Clear"){
+        setVal1("");
+        setOperand("");
+        setOnDisplay("");
+        setActionLock(false);
+      }
+      return;
+    }
+    else{
     switch(value){
       case "=":
         evaluate();
@@ -34,26 +44,38 @@ function App() {
         break;
       
       case "Bin":
-        //TODO
+        if (onDisplay !== "") {
+          const num = parseInt(onDisplay, 10);
+          setOnDisplay(num.toString(2));
+        }
+        setActionLock(true);
         break;
       case "Hex":
-        //TODO
+        if (onDisplay !== "") {
+          const num = parseInt(onDisplay, 10);
+          setOnDisplay(num.toString(16).toUpperCase());
+        }
+        setActionLock(true);
         break;
-      case ".":
-        if(onDisplay === "") setOnDisplay("0.");
-        else setOnDisplay(prev => prev + value);
-        break;
-
+      
       default:
-        try{
-          if(onDisplay === "0") {
-            setOnDisplay(value)
+        if(onDisplay.length > 13) break;
+        if(value === "."){
+          if(onDisplay === ""){ 
+            setOnDisplay("0.");
           }
-          else setOnDisplay(prev => prev + value);
+          else if(onDisplay.includes(".")) break;
+          else{
+            
+            setOnDisplay(prev => prev + value);
+          }
+          break;
         }
-        catch{
-          return;
+        if(onDisplay === "0") {
+          setOnDisplay(value)
         }
+        else setOnDisplay(prev => prev + value);
+      }
     }
   }
 
@@ -76,6 +98,7 @@ function App() {
       case "/":
         if(num2 == 0){
           setOnDisplay("Err: Div/0");
+          setActionLock(true);
           return;
         } 
         result = num1 / num2;
@@ -90,7 +113,12 @@ function App() {
         break;
       
       case "Sqrt":
-        result = Math.sqrt(num1);
+        //Pierwsza liczba wartość, druga - stopień pierwiastka
+        if (num1 < 0 && num2 % 2 === 0) {
+          setOnDisplay("Err: Neg Sqrt");
+          return;
+        }
+        result = Math.pow(num1, 1 / num2);
         break;
     }
     result = Math.round(result * 100) / 100;
@@ -152,7 +180,7 @@ function App() {
         <Display value={onDisplay}/>
       </div>
       <div id='KeyPadContainer'>
-        <KeyPad onBtnClick={inputHandle}/>
+        <KeyPad onBtnClick={inputHandle} isLocked={actionLock} />
       </div>
     </main>
   );

@@ -142,3 +142,11 @@ main{
     width: 70%;
     height: 80%;
 }
+
+.highlight-green {
+    background-color: #2ecc71 !important;
+    color: white !important;
+    box-shadow: 0 0 15px #2ecc71; /* Dodajemy efekt świecenia */
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}

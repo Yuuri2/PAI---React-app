@@ -8,7 +8,7 @@ const layout = [
     "=","."
 ]
 
-function KeyPad({ onBtnClick }){
+function KeyPad({ onBtnClick, isLocked }){
     return(
         <div id='KeyPadSpace'>
             {layout.map((label) => (
@@ -16,7 +16,10 @@ function KeyPad({ onBtnClick }){
                 key={label} 
                 label={label} 
                 onClick={() => onBtnClick(label)}
-                className={label === "=" ? "equal-btn" : ""}
+                className={`
+                        ${label === "=" ? "equal-btn" : ""} 
+                        ${(label === "Clear" && isLocked) ? "highlight-green" : ""}
+                    `}
                 />
             ))}
         </div>

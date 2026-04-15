@@ -10,8 +10,8 @@
 - [x] Reset kalkulatora
 
 ## Moje rozszerzenia:
-- [ ] Potęgi i pierwiastki
-- [ ] Przeliczanie na Binarne i Hexadecymalne
+- [x] Potęgi i pierwiastki
+- [x] Przeliczanie na Binarne i Hexadecymalne
 
 
 *Autor: Adrian Torbus*
